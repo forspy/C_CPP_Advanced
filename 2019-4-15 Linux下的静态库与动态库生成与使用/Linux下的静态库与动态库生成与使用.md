@@ -69,7 +69,7 @@ linux下的静态库和动态库都是由.o文件生成的
 
 **使用.a静态库**
 
-使用`g++ -o main main.cpp -static -lHello -L.`将静态库编译进去 
+使用`g++ -o main main.cpp -static -lHello -L.`将静态库编译进去 （-static可以不加 **标准写法**）
 
 ![](./pic/command3.png)
 
@@ -79,7 +79,25 @@ linux下的静态库和动态库都是由.o文件生成的
 
 -L. :链接时需指明静态库所存在的路径，‘.’表示当前路径
 
-生成的文件
+--------------------------2019.4.28更新
+
+1.静态库一定要放在生成文件后面
+
+     g++ -o main main.cpp libHello.a
+
+2.使用静态库时一定要连接所有用到的静态库
+
+    gcc main.c -o main liba.a libb.a libc.a
+
+a依赖于b, b依赖于c; 注意多个连接静态库的顺序 规则：越底层的库放在越后面
+
+3.静态库动态库相结合使用
+
+    gcc main.c –L/usr/local/lib –lworld –o main liba.a
+
+其中–L/usr/local/lib为动态库路径 -lworld表示链接libworld.so动态库
+
+**生成的文件**
 
 ![](pic/out.png)
 
@@ -89,7 +107,8 @@ linux下的静态库和动态库都是由.o文件生成的
 
 （静态库是在编译阶段就进入然后链接成为可执行代码，所以删掉libHello.a并不会影响main的运行结果）
 
-
+静态库的更新
+比如有一个新的.o文件需要链接到静态库里面去，`ar cr libHello.a Hello1.o`,链接完以后需要`ranlib libHello.a` 在静态库中更新索引
 ## 动态库的生成与使用 ##
 
 最主要的是GCC命令行的一个选项: 

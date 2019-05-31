@@ -157,6 +157,15 @@ source：
 使用示例：
 
 	target_link_libraries(luacocos2d cocos2d)
+所以要链接一个库：
+	
+1.指定库的位置
+
+	link_directories(${PROJECT_SOURCE_DIR}/lib)
+
+2.指定对应的库名
+
+	target_link_libraries(djpeg.c ../lib/libturbojpeg.a )
 
 **9.set：**
 

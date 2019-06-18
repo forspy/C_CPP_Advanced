@@ -1,0 +1,4 @@
+https://www.cnblogs.com/ay-a/p/8232584.html
+
+diff a.c  b.txt 
+diff a.c  b.txt | cat -n

@@ -33,3 +33,9 @@ password为密码
 若mount不上可以尝试重启并关闭防火墙
 
 ![](pic/defender.png)
+
+
+在130上mount不上的时候可以试试夹vers
+
+	sudo mount -t cifs //172.16.72.17/test_hehe /test1 -o username=qiubowei,password=qbw4791516qbw,vers=2.0
+
